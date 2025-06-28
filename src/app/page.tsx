@@ -1,7 +1,13 @@
+"use client"
+import {useTRPC} from "@/trpc/client";
+import {useQuery} from "@tanstack/react-query";
+
 const Page = () => {
+    const trpc = useTRPC()
+    const { data } = useQuery(trpc.hello.queryOptions({ text: "Rhymes" }))
   return (
     <div className='font-bold text-rose-500'>
-        Welcome Home
+        {JSON.stringify(data)}
     </div>
   )
 }
